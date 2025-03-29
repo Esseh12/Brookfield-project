@@ -6,8 +6,7 @@ const BottomHero = () => {
 			className='relative bg-center bg-cover bg-no-repeat text-white flex items-center 
                  h-[60vh]  p-4 sm:p-6 md:p-8'
 			style={{
-				backgroundImage:
-					"url('public/Assets/Images/careers-homepage-mobile-3.avif')",
+				backgroundImage: "url('/Assets/Images/careers-homepage-mobile-3.avif')",
 			}}>
 			{/* The container is half-width on medium+ screens, full width on smaller screens */}
 			<div className='max-w-7xl w-full md:w-1/2 ml-0 md:ml-28 flex flex-col gap-2'>
