@@ -1,5 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import Homepage from './Pages/Homepage';
+import WhoWeAre from './Pages/About/who-we-are';
+import GlobalPrescence from './Pages/About/GlobalPrescence';
+import Leadership from './Pages/About/Leadership';
 
 function App() {
 	return (
@@ -10,8 +13,16 @@ function App() {
 					element={<Homepage />}
 				/>
 				<Route
-					path='/about'
-					element={<h1>About</h1>}
+					path='/about-us/who-we-are'
+					element={<WhoWeAre />}
+				/>
+				<Route
+					path='/about-us/global-presence'
+					element={<GlobalPrescence />}
+				/>
+				<Route
+					path='/about-us/leadership'
+					element={<Leadership />}
 				/>
 			</Routes>
 		</>
