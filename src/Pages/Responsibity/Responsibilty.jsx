@@ -1,6 +1,6 @@
 import PagesLayout from '../../Components/Layout/PagesLayout';
 import ReusableSection from '../../Components/Layout/ReusableHero';
-import DefaultButton from '../../Components/Buttons/DefaultButton';
+import DefaultButton from '../../Components/Buttons/defaultButton';
 import ReusableAccordion from '../../Components/Accordion/Accordion';
 import CarouselCard from '../../Components/Carousel/Carousel';
 

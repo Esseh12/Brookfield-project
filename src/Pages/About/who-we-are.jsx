@@ -1,5 +1,5 @@
 import PagesLayout from '../../Components/Layout/PagesLayout';
-import DefaultButton from '../../Components/Buttons/DefaultButton';
+import DefaultButton from '../../Components/Buttons/defaultButton';
 
 /** Mini component for displaying stats like "2,500+" and "Employees" */
 function StatItem({ number, label }) {
