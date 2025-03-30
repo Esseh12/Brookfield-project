@@ -18,6 +18,7 @@ const DefaultButton = ({
 	link = '#',
 	textColor = '#FFFFFF',
 	borderColor = '#FFFFFF',
+	backgroundColor = 'transparent',
 	hoverOverlayColor = 'rgba(255,255,255,0.2)',
 }) => {
 	return (
@@ -33,11 +34,11 @@ const DefaultButton = ({
 				padding: '0.5rem 1.5rem',
 				display: 'inline-flex',
 				alignItems: 'center',
-				backgroundColor: 'transparent',
+				backgroundColor: backgroundColor,
 				borderRadius: '0',
 				// On hover, we’ll rely on the overlay for the effect
 				'&:hover': {
-					backgroundColor: 'transparent',
+					// backgroundColor: 'transparent',
 				},
 			}}
 			className='group relative transition-all duration-300'>

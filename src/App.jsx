@@ -3,6 +3,7 @@ import Homepage from './Pages/Homepage';
 import WhoWeAre from './Pages/About/who-we-are';
 import GlobalPrescence from './Pages/About/GlobalPrescence';
 import Leadership from './Pages/About/Leadership';
+import Responsibility from './Pages/Responsibity/Responsibilty';
 
 function App() {
 	return (
@@ -23,6 +24,10 @@ function App() {
 				<Route
 					path='/about-us/leadership'
 					element={<Leadership />}
+				/>
+				<Route
+					path='/responsibility'
+					element={<Responsibility />}
 				/>
 			</Routes>
 		</>

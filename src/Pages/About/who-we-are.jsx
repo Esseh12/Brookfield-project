@@ -1,6 +1,6 @@
 import PagesLayout from '../../Components/Layout/PagesLayout';
 import React from 'react';
-import DefaultButton from '../../Components/Buttons/defaultButton';
+import DefaultButton from '../../Components/Buttons/DefaultButton';
 
 /** Mini component for displaying stats like "2,500+" and "Employees" */
 function StatItem({ number, label }) {

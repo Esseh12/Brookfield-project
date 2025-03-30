@@ -19,8 +19,6 @@ const GlobalPrescence = () => {
 		<PagesLayout
 			heroImage='/Assets/Images/07-brookfield-global_presence_hero_desktop.avif'
 			heroHeading='Global Presecence'>
-			{/* First section : Ecosystem */}
-			{/* Second Section: Ecosystem */}
 			<div className='relative bg-white px-4 sm:px-12 lg:px-12 py-8 md:py-24 md:px-34'>
 				<div className='max-w-7xl mx-auto'>
 					{/* Header */}

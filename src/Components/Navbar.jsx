@@ -2,121 +2,15 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Typography } from '@mui/material';
 import { MdSearch, MdMenu, MdClose } from 'react-icons/md';
-
-// Updated NavDropdown that opens on hover and remains open on click
-function NavDropdown({
-	title,
-	items,
-	className = '',
-	dropdownClassName = '',
-	itemClassName = '',
-	triangleClassName = '',
-}) {
-	const [isOpen, setIsOpen] = useState(false);
-	const [clicked, setClicked] = useState(false);
-	const dropdownRef = useRef(null);
-
-	// Close dropdown when clicking outside
-	useEffect(() => {
-		const handleClickOutside = (event) => {
-			if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-				setIsOpen(false);
-				setClicked(false);
-			}
-		};
-
-		document.addEventListener('mousedown', handleClickOutside);
-		return () => {
-			document.removeEventListener('mousedown', handleClickOutside);
-		};
-	}, []);
-
-	const handleMouseEnter = () => {
-		// Show on hover if not clicked
-		if (!clicked) {
-			setIsOpen(true);
-		}
-	};
-
-	const handleMouseLeave = () => {
-		// Hide on mouse leave if not clicked
-		if (!clicked) {
-			setIsOpen(false);
-		}
-	};
-
-	const handleClick = () => {
-		// Toggle open state on click, also track that user clicked
-		setIsOpen(!isOpen);
-		setClicked(!clicked);
-	};
-
-	return (
-		<div
-			className='relative'
-			ref={dropdownRef}
-			onMouseEnter={handleMouseEnter}
-			onMouseLeave={handleMouseLeave}>
-			{/* Dropdown trigger */}
-			<button
-				onClick={handleClick}
-				className={`px-3 py-2 rounded-md text-sm font-medium focus:outline-none flex items-center transition-all ${className}`}
-				aria-expanded={isOpen}>
-				{title}
-				<svg
-					className={`ml-1 h-4 w-4 transition-transform duration-200 ${
-						isOpen ? 'transform rotate-180' : ''
-					}`}
-					xmlns='http://www.w3.org/2000/svg'
-					viewBox='0 0 20 20'
-					fill='currentColor'>
-					<path
-						fillRule='evenodd'
-						d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 
-               111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z'
-						clipRule='evenodd'
-					/>
-				</svg>
-			</button>
-
-			{/* Dropdown menu */}
-			{isOpen && (
-				<div
-					className={`absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50 transition-all duration-200 ${dropdownClassName}`}>
-					{/* Triangle pointer */}
-					<div
-						className={`absolute -top-2 left-4 w-4 h-4 bg-white transform rotate-45 ${triangleClassName}`}
-					/>
-					<div className='py-1 rounded-md bg-white relative z-10'>
-						{items.map((item, index) => (
-							<a
-								key={index}
-								href={item.href}
-								className={`block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ${itemClassName}`}
-								onClick={(e) => {
-									if (item.onClick) {
-										e.preventDefault();
-										item.onClick();
-									}
-									// Close after clicking a link
-									setIsOpen(false);
-									setClicked(false);
-								}}>
-								{item.label}
-							</a>
-						))}
-					</div>
-				</div>
-			)}
-		</div>
-	);
-}
+import NavDropdown, { FeatureContent } from './NavbarDropdown';
 
 const Navbar = ({ navItems = [], logo, logoText }) => {
 	const [scrolled, setScrolled] = useState(false);
 	const [searchOpen, setSearchOpen] = useState(false);
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+	const [hoveredItem, setHoveredItem] = useState(null);
 	const searchInputRef = useRef(null);
+	const hoverTimeoutRef = useRef(null);
 
 	// Track scroll position to toggle background/text color
 	useEffect(() => {
@@ -157,7 +51,55 @@ const Navbar = ({ navItems = [], logo, logoText }) => {
 		};
 	}, [mobileMenuOpen]);
 
+	// Clean up any hover timeouts on unmount
+	useEffect(() => {
+		return () => {
+			if (hoverTimeoutRef.current) {
+				clearTimeout(hoverTimeoutRef.current);
+			}
+		};
+	}, []);
+
 	const textColorClass = scrolled ? 'text-[#0f3557]' : 'text-white';
+
+	// Process nav items to use with our two-column dropdown
+	const processedNavItems = navItems.map((item) => {
+		if (item.dropdownItems) {
+			// Convert to the format our new NavDropdown expects
+			return {
+				...item,
+				leftItems: item.dropdownItems,
+				// Optional: set default right content if not provided
+				rightContent: item.rightContent || (
+					<FeatureContent
+						title={`About ${item.label}`}
+						description={`Learn more about our ${item.label.toLowerCase()} offerings and services.`}
+						linkText='Learn More'
+						linkUrl={item.href || '#'}
+					/>
+				),
+			};
+		}
+		return item;
+	});
+
+	// Handle mouse enter for dropdown items
+	const handleMouseEnter = (index) => {
+		// Clear any existing timeout
+		if (hoverTimeoutRef.current) {
+			clearTimeout(hoverTimeoutRef.current);
+		}
+		// Set the hovered item immediately
+		setHoveredItem(index);
+	};
+
+	// Handle mouse leave for dropdown items with a small delay
+	const handleMouseLeave = () => {
+		// Add a small delay before closing to improve UX
+		hoverTimeoutRef.current = setTimeout(() => {
+			setHoveredItem(null);
+		}, 150);
+	};
 
 	return (
 		<header
@@ -190,14 +132,26 @@ const Navbar = ({ navItems = [], logo, logoText }) => {
 
 					{/* Center: Nav Links - Hidden on mobile */}
 					<nav className='hidden md:flex items-center space-x-1'>
-						{(navItems || []).map((item, index) =>
-							item.dropdownItems ? (
-								<NavDropdown
+						{processedNavItems.map((item, index) =>
+							item.leftItems ? (
+								<div
 									key={index}
-									title={item.label}
-									items={item.dropdownItems}
-									className={`${textColorClass} hover:opacity-80`}
-								/>
+									onMouseEnter={() => handleMouseEnter(index)}
+									onMouseLeave={handleMouseLeave}>
+									<NavDropdown
+										title={item.label}
+										leftItems={item.leftItems}
+										rightContent={item.rightContent}
+										className={`${textColorClass} hover:opacity-80`}
+										dropdownClassName='mt-2'
+										leftItemClassName='text-gray-700 hover:text-blue-600'
+										isOpen={hoveredItem === index}
+										setIsOpen={(isOpen) => {
+											if (isOpen) setHoveredItem(index);
+											else setHoveredItem(null);
+										}}
+									/>
+								</div>
 							) : (
 								<Link
 									key={index}
@@ -315,14 +269,15 @@ const Navbar = ({ navItems = [], logo, logoText }) => {
 				<div
 					className='p-4 overflow-y-auto'
 					style={{ maxHeight: 'calc(100vh - 200px)' }}>
-					{(navItems || []).map((item, index) => (
+					{processedNavItems.map((item, index) => (
 						<div
 							key={index}
 							className='py-2 border-b'>
-							{item.dropdownItems ? (
+							{item.leftItems ? (
 								<MobileAccordion
 									title={item.label}
-									items={item.dropdownItems}
+									items={item.leftItems}
+									rightContent={item.rightContent}
 									onClose={() => setMobileMenuOpen(false)}
 								/>
 							) : (
@@ -349,7 +304,7 @@ const Navbar = ({ navItems = [], logo, logoText }) => {
 };
 
 // Mobile Accordion for dropdown items
-function MobileAccordion({ title, items, onClose }) {
+function MobileAccordion({ title, items, rightContent, onClose }) {
 	const [isOpen, setIsOpen] = useState(false);
 
 	return (
@@ -367,8 +322,7 @@ function MobileAccordion({ title, items, onClose }) {
 					fill='currentColor'>
 					<path
 						fillRule='evenodd'
-						d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 
-               111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z'
+						d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z'
 						clipRule='evenodd'
 					/>
 				</svg>
@@ -376,6 +330,7 @@ function MobileAccordion({ title, items, onClose }) {
 
 			{isOpen && (
 				<div className='ml-4 mt-1 border-l-2 border-gray-200 pl-2'>
+					{/* Main items */}
 					{items.map((item, idx) => (
 						<Link
 							key={idx}
@@ -390,6 +345,16 @@ function MobileAccordion({ title, items, onClose }) {
 							{item.label}
 						</Link>
 					))}
+
+					{/* Optional: Display a simplified version of the right content on mobile */}
+					{rightContent && (
+						<div className='mt-3 p-2 bg-gray-50 rounded-md'>
+							{React.isValidElement(rightContent) &&
+								React.cloneElement(rightContent, {
+									className: 'text-sm',
+								})}
+						</div>
+					)}
 				</div>
 			)}
 		</div>
