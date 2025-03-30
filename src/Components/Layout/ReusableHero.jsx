@@ -1,5 +1,4 @@
-import React from 'react';
-import DefaultButton from '../Buttons/DefaultButton';
+import DefaultButton from '../Buttons/defaultButton';
 
 const ReusableSection = ({
 	backgroundImage,
