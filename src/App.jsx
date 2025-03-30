@@ -4,6 +4,7 @@ import WhoWeAre from './Pages/About/who-we-are';
 import GlobalPrescence from './Pages/About/GlobalPrescence';
 import Leadership from './Pages/About/Leadership';
 import Responsibility from './Pages/Responsibity/Responsibilty';
+import NetZeroCommitment from './Pages/Responsibity/NetZeroCommitment';
 
 function App() {
 	return (
@@ -28,6 +29,10 @@ function App() {
 				<Route
 					path='/responsibility'
 					element={<Responsibility />}
+				/>
+				<Route
+					path='/responsibility/tamseys-net-zero-commitment'
+					element={<NetZeroCommitment />}
 				/>
 			</Routes>
 		</>

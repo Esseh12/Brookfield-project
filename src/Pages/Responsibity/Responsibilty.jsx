@@ -85,7 +85,7 @@ const SustainabilityPrinciples = () => {
 		<section className='bg-white py-16 px-4 md:px-0'>
 			<div className='container mx-auto'>
 				<div className='text-center md:text-left mb-10'>
-					<h1 className='text-4xl font-playfair'>Sustainability at Tamsey</h1>
+					<h1 className='text-4xl playscript'>Sustainability at Tamsey</h1>
 					<div className='w-16 h-1 bg-[#ff8200] mt-4 mx-auto md:mx-0'></div>
 				</div>
 				<p className='text-lg leading-8 text-center md:text-left mb-10'>

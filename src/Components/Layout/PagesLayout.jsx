@@ -40,7 +40,7 @@ const PagesLayout = ({ heroImage, heroHeading, heroSubheading, children }) => {
 				},
 				{
 					label: 'Our Net Zero Commitment',
-					href: '/responsibility/brookfields-net-zero-commitment',
+					href: '/responsibility/tamseys-net-zero-commitment',
 				},
 				{
 					label: 'Our Workplace',
