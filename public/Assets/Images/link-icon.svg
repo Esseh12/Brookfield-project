@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="25px" height="25px" viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group 5</title>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.7">
+        <g id="External-Link---Default" transform="translate(-7.000000, 0.000000)">
+            <g id="Group-5" transform="translate(8.290808, 1.872381)">
+                <rect id="Rectangle" stroke="#4D4D4D" stroke-width="2" fill="#FFFFFF" x="0" y="5.49981718" width="16.44368" height="16.44368"></rect>
+                <polyline id="Path-6" fill="#FFFFFF" points="10.469089 3.89979539 10.469089 11.164245 17.7335386 11.164245 17.7335386 3.89979539"></polyline>
+                <line x1="5.81832537" y1="9.78819378" x2="20.4849639" y2="8.32152993" id="Path" stroke="#4D4D4D" stroke-width="2" transform="translate(13.151645, 9.054862) rotate(-45.000000) translate(-13.151645, -9.054862) "></line>
+                <polyline id="Path-2" stroke="#4D4D4D" stroke-width="2" stroke-linejoin="round" transform="translate(16.750109, 5.249891) rotate(-45.000000) translate(-16.750109, -5.249891) " points="14.2518089 10.1760592 19.2484084 5.09591409 14.7703528 0.323723573"></polyline>
+            </g>
+        </g>
+    </g>
+</svg>

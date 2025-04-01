@@ -6,6 +6,7 @@ import Leadership from './Pages/About/Leadership';
 import Responsibility from './Pages/Responsibity/Responsibilty';
 import NetZeroCommitment from './Pages/Responsibity/NetZeroCommitment';
 import OurWorkplace from './Pages/Responsibity/Ourworkplace';
+import SustainabilityResources from './Pages/Responsibity/SustainabilityResources';
 
 function App() {
 	return (
@@ -38,6 +39,10 @@ function App() {
 				<Route
 					path='/responsibility/our-workplace'
 					element={<OurWorkplace />}
+				/>
+				<Route
+					path='/responsibility/sustainability-resources'
+					element={<SustainabilityResources />}
 				/>
 			</Routes>
 		</>

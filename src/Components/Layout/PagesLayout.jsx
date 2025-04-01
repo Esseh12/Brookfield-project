@@ -9,7 +9,7 @@ const PagesLayout = ({ heroImage, heroHeading, heroSubheading, children }) => {
 		window.scrollTo(0, 0);
 	}, []);
 
-	// Define navItems to be passed to Navbar with proper rightContent for dropdowns
+	// Define navItems for Navbar
 	const navItems = [
 		{
 			label: 'About Us',
@@ -124,15 +124,17 @@ const PagesLayout = ({ heroImage, heroHeading, heroSubheading, children }) => {
 			/>
 
 			{/* Hero Section */}
-			<section className='relative w-full h-[50vh] overflow-hidden bg-[#f5f5f5]'>
-				<img
-					src={heroImage}
-					alt={heroHeading || 'Page Hero'}
-					loading='lazy'
-					className='object-cover w-full h-full inset-0 bg-gradient-to-b from-black/100 to-black/70'
-					style={{ filter: 'brightness(0.7)' }}
-				/>
-				<div className='absolute inset-0 bg-opacity-30 flex items-center justify-center'>
+			<section className='relative w-full h-[50vh] overflow-hidden bg-[#0d2d4a]'>
+				{heroImage && (
+					<img
+						src={heroImage}
+						alt={heroHeading || 'Page Hero'}
+						loading='lazy'
+						className='object-cover w-full h-full inset-0 bg-gradient-to-b from-black/100 to-black/70'
+						style={{ filter: 'brightness(0.7)' }}
+					/>
+				)}
+				<div className='absolute inset-0 flex items-center justify-center'>
 					<div className='text-center px-4 sm:px-6'>
 						<h1 className='playscript text-white text-2xl sm:text-3xl md:text-[54px] leading-[72px]'>
 							{heroHeading}
