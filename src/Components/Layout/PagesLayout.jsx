@@ -78,7 +78,21 @@ const PagesLayout = ({ heroImage, heroHeading, heroSubheading, children }) => {
 				/>
 			),
 		},
-		{ label: 'Careers', href: '/careers' },
+		{
+			label: 'Careers',
+			href: '#',
+			dropdownItems: [
+				{ label: 'Student Programs', href: '/careers/student-programs' },
+				{
+					label: 'Sustainability Report',
+					href: '/responsibility/2023-sustainability-report',
+				},
+				{
+					label: 'Our Net Zero Commitment',
+					href: '/responsibility/tamseys-net-zero-commitment',
+				},
+			],
+		},
 		{
 			label: 'News & Insights',
 			href: '/news',
