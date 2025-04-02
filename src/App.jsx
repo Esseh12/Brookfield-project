@@ -13,6 +13,7 @@ import Insights from './Pages/NewsAndInsight/Insights';
 import Podcast from './Pages/NewsAndInsight/Podcast';
 import NewsRoom from './Pages/NewsAndInsight/NewsRoom';
 import PrivateMarketSolutions from './Pages/Investors/PrivateMarketSolutions';
+import PublicSecurities from './Pages/Investors/PublicSecurities';
 
 function App() {
 	return (
@@ -73,6 +74,14 @@ function App() {
 				<Route
 					path='/institutional-investors'
 					element={<PrivateMarketSolutions />}
+				/>
+				<Route
+					path='/institutional-investors/public-securities'
+					element={<PublicSecurities />}
+				/>
+				<Route
+					path='*'
+					element={<Homepage />}
 				/>
 			</Routes>
 		</>
