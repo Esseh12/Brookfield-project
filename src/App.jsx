@@ -11,6 +11,8 @@ import StudentPrograms from './Pages/Careers/StudentPrograms';
 import Opportunities from './Pages/Careers/Oppurtunities';
 import Insights from './Pages/NewsAndInsight/Insights';
 import Podcast from './Pages/NewsAndInsight/Podcast';
+import NewsRoom from './Pages/NewsAndInsight/NewsRoom';
+import PrivateMarketSolutions from './Pages/Investors/PrivateMarketSolutions';
 
 function App() {
 	return (
@@ -63,6 +65,14 @@ function App() {
 				<Route
 					path='/news-insights/podcasts/brookfield-perspectives'
 					element={<Podcast />}
+				/>
+				<Route
+					path='/news-insights/newsroom'
+					element={<NewsRoom />}
+				/>
+				<Route
+					path='/institutional-investors'
+					element={<PrivateMarketSolutions />}
 				/>
 			</Routes>
 		</>

@@ -105,10 +105,10 @@ const PagesLayout = ({
 			dropdownItems: [
 				{ label: 'Insights', href: '/news-insights/insights' },
 				{
-					label: 'Podcast',
+					label: 'Podcasts',
 					href: '/news-insights/podcasts/brookfield-perspectives',
 				},
-				{ label: 'Thought Leadership', href: '/news/thought-leadership' },
+				{ label: 'Newsroom', href: '/news-insights/newsroom' },
 			],
 			rightContent: (
 				<FeatureContent
