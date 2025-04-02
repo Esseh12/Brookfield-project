@@ -3,7 +3,13 @@ import Navbar from '../Navbar';
 import Footer from '../Footer';
 import { FeatureContent } from '../NavbarDropdown';
 
-const PagesLayout = ({ heroImage, heroHeading, heroSubheading, children }) => {
+const PagesLayout = ({
+	heroImage,
+	heroHeading,
+	heroSubheading,
+	heroChildren, // <-- NEW optional prop
+	children,
+}) => {
 	// Scroll to top when the component mounts
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -84,8 +90,8 @@ const PagesLayout = ({ heroImage, heroHeading, heroSubheading, children }) => {
 			dropdownItems: [
 				{ label: 'Student Programs', href: '/careers/student-programs' },
 				{
-					label: 'Sustainability Report',
-					href: '/responsibility/2023-sustainability-report',
+					label: 'Open Oppurtunities',
+					href: '/careers/opportunities',
 				},
 				{
 					label: 'Our Net Zero Commitment',
@@ -95,18 +101,21 @@ const PagesLayout = ({ heroImage, heroHeading, heroSubheading, children }) => {
 		},
 		{
 			label: 'News & Insights',
-			href: '/news',
+			href: '',
 			dropdownItems: [
-				{ label: 'Press Releases', href: '/news/press-releases' },
-				{ label: 'Research', href: '/news/research' },
+				{ label: 'Insights', href: '/news-insights/insights' },
+				{
+					label: 'Podcast',
+					href: '/news-insights/podcasts/brookfield-perspectives',
+				},
 				{ label: 'Thought Leadership', href: '/news/thought-leadership' },
 			],
 			rightContent: (
 				<FeatureContent
-					title='Latest Insights'
-					description='Stay up to date with our latest financial insights and market analysis.'
-					linkText='View All Insights'
-					linkUrl='/news/all'
+					image='/Assets/Images/bn-annual-report-2024--tout.avif'
+					title='BN 2024 Annual Report'
+					linkText='View More'
+					linkUrl='#'
 				/>
 			),
 		},
@@ -148,16 +157,24 @@ const PagesLayout = ({ heroImage, heroHeading, heroSubheading, children }) => {
 						style={{ filter: 'brightness(0.7)' }}
 					/>
 				)}
+
+				{/* Overlay content */}
 				<div className='absolute inset-0 flex items-center justify-center'>
 					<div className='text-center px-4 sm:px-6'>
-						<h1 className='playscript text-white text-2xl sm:text-3xl md:text-[54px] leading-[72px]'>
-							{heroHeading}
-						</h1>
+						{heroHeading && (
+							<h1 className='playscript text-white text-2xl sm:text-3xl md:text-[54px] leading-[72px]'>
+								{heroHeading}
+							</h1>
+						)}
+
 						{heroSubheading && (
-							<p className='mt-2 text-white text-sm sm:text-base md:text-lg'>
+							<p className='mt-2 text-white text-sm max-w-4xl mx-auto'>
 								{heroSubheading}
 							</p>
 						)}
+
+						{/* NEW optional children in hero */}
+						{heroChildren && <div className='mt-4'>{heroChildren}</div>}
 					</div>
 				</div>
 			</section>

@@ -8,6 +8,9 @@ import NetZeroCommitment from './Pages/Responsibity/NetZeroCommitment';
 import OurWorkplace from './Pages/Responsibity/Ourworkplace';
 import SustainabilityResources from './Pages/Responsibity/SustainabilityResources';
 import StudentPrograms from './Pages/Careers/StudentPrograms';
+import Opportunities from './Pages/Careers/Oppurtunities';
+import Insights from './Pages/NewsAndInsight/Insights';
+import Podcast from './Pages/NewsAndInsight/Podcast';
 
 function App() {
 	return (
@@ -48,6 +51,18 @@ function App() {
 				<Route
 					path='/careers/student-programs'
 					element={<StudentPrograms />}
+				/>
+				<Route
+					path='/careers/opportunities'
+					element={<Opportunities />}
+				/>
+				<Route
+					path='/news-insights/insights'
+					element={<Insights />}
+				/>
+				<Route
+					path='/news-insights/podcasts/brookfield-perspectives'
+					element={<Podcast />}
 				/>
 			</Routes>
 		</>

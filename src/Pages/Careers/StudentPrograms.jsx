@@ -23,7 +23,7 @@ const StudentPrograms = () => {
 				<img
 					src={imageSrc}
 					alt={altText}
-					className='w-full h-48 object-cover' // ensures a fixed image height
+					className='w-full h-48 object-cover' // fixed height ensures uniformity
 				/>
 				<div className='p-4'>
 					<SectionHeader
@@ -39,7 +39,7 @@ const StudentPrograms = () => {
 		);
 	};
 
-	// Reusable ReportCard component
+	// Reusable ReportCard component with fixed image container for uniform size
 	const ReportCard = ({
 		imageSrc,
 		altText,
@@ -49,7 +49,6 @@ const StudentPrograms = () => {
 	}) => {
 		return (
 			<div className='flex-1'>
-				{/* Wrap image in fixed-height container */}
 				<div className='w-full h-48 overflow-hidden'>
 					<img
 						src={imageSrc}
@@ -71,10 +70,8 @@ const StudentPrograms = () => {
 		);
 	};
 
-	// State for testimonial carousel
+	// Testimonial state and data
 	const [currentTestimonial, setCurrentTestimonial] = useState(0);
-
-	// Testimonial data
 	const testimonials = [
 		{
 			image:
@@ -163,47 +160,49 @@ const StudentPrograms = () => {
 
 				{/* Testimonial Section (Image & Quote with Dots) */}
 				<section className='py-10 px-4 sm:px-8 md:px-16 lg:px-20 bg-white'>
-					<div className='flex flex-col md:flex-row items-center justify-center gap-8 bg-[#0f3557] text-white relative'>
-						{/* Image on the left */}
-						<div className='w-full md:w-1/2'>
-							<img
-								src={testimonials[currentTestimonial].image}
-								alt='Testimonial'
-								className='w-full object-cover rounded'
-							/>
-						</div>
-						{/* Quote and name on the right with swipe support */}
-						<div
-							className='w-full md:w-1/2 text-center md:text-left relative'
-							{...swipeHandlers}>
-							<p className='text-xl md:text-2xl italic mb-4'>
-								“{testimonials[currentTestimonial].quote}”
-							</p>
-							<p className='font-bold'>
-								{testimonials[currentTestimonial].name}
-							</p>
-							{/* Navigation Dots at Bottom Right */}
-							<div className='absolute bottom-5 right-5 flex gap-2'>
-								{testimonials.map((_, index) => (
-									<span
-										key={index}
-										onClick={() => setCurrentTestimonial(index)}
-										className={`cursor-pointer w-3 h-3 rounded-full ${
-											index === currentTestimonial
-												? 'bg-[#ff8200]'
-												: 'bg-gray-300'
-										}`}
-									/>
-								))}
+					<div className='relative bg-[#0f3557] text-white'>
+						<div className='flex flex-col md:flex-row items-center justify-center gap-8'>
+							{/* Image on the left */}
+							<div className='w-full md:w-1/2'>
+								<img
+									src={testimonials[currentTestimonial].image}
+									alt='Testimonial'
+									className='w-full object-cover rounded'
+								/>
 							</div>
+							{/* Quote and name on the right with swipe support */}
+							<div
+								className='w-full md:w-1/2 text-center md:text-left'
+								{...swipeHandlers}>
+								<p className='text-xl md:text-2xl italic mb-4'>
+									“{testimonials[currentTestimonial].quote}”
+								</p>
+								<p className='font-bold'>
+									{testimonials[currentTestimonial].name}
+								</p>
+							</div>
+						</div>
+						{/* Navigation Dots always at Bottom Right */}
+						<div className='absolute bottom-5 right-5 flex gap-2'>
+							{testimonials.map((_, index) => (
+								<span
+									key={index}
+									onClick={() => setCurrentTestimonial(index)}
+									className={`cursor-pointer w-3 h-3 rounded-full ${
+										index === currentTestimonial
+											? 'bg-[#ff8200]'
+											: 'bg-gray-300'
+									}`}
+								/>
+							))}
 						</div>
 					</div>
 				</section>
 
-				{/* ESG Commitments */}
+				{/* ESG Commitments Section */}
 				<section className='py-10 px-4 sm:px-8 md:px-16 lg:px-20'>
 					<div className='text-center'>
-						<h1 className='text-sxl md:text-2xl font-bold mb-4'>
+						<h1 className='text-xl md:text-2xl font-bold mb-4'>
 							Our ESG Commitments
 						</h1>
 						<p className='text-base sm:text-[18px] md:text-lg'>
@@ -211,7 +210,7 @@ const StudentPrograms = () => {
 							positive impact we have made.
 						</p>
 					</div>
-					<div className='mt-10 flex flex-wrap flex-col md:flex-row gap-4 justify-center'>
+					<div className='mt-10 flex flex-wrap gap-4 justify-center'>
 						<ReportCard
 							imageSrc='/Assets/Images/Report-Cover-Photo.avif'
 							altText='Sustainability report'
@@ -236,8 +235,47 @@ const StudentPrograms = () => {
 					</div>
 				</section>
 
-				{/* Respource section */}
-				<section className='bg-[#0f3557]'></section>
+				{/* Resources Section */}
+				<section className='bg-[#0f3557] py-16 px-4 sm:px-8 md:px-16 lg:px-20'>
+					<div className='max-w-4xl mr-auto flex flex-wrap justify-between items-center'>
+						<h1 className='text-white playscript text-4xl mb-4'>Resources</h1>
+						<div className='flex flex-col gap-6'>
+							<Link
+								to='/internships'
+								className='flex gap-6 items-center'>
+								<img
+									src='/Assets/Images/resource-link-arrow.svg'
+									alt='Resource arrow'
+								/>
+								<p className='text-white font-semibold text-lg leading-[27px]'>
+									View our Internship Opening
+								</p>
+							</Link>
+							<Link
+								to='/responsibility/diversity-equity-inclusion'
+								className='flex gap-6 items-center'>
+								<img
+									src='/Assets/Images/resource-link-arrow.svg'
+									alt='Resource arrow'
+								/>
+								<p className='text-white font-semibold text-lg leading-[27px]'>
+									Learn about our commitment to Diversity and Inclusion
+								</p>
+							</Link>
+							<Link
+								to='/'
+								className='flex gap-6 items-center'>
+								<img
+									src='/Assets/Images/resource-link-arrow.svg'
+									alt='Resource arrow'
+								/>
+								<p className='text-white font-semibold text-lg leading-[27px]'>
+									Learn more about our firm
+								</p>
+							</Link>
+						</div>
+					</div>
+				</section>
 			</section>
 		</PagesLayout>
 	);
