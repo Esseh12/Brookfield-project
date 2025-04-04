@@ -1,13 +1,12 @@
 import { IoLogoYoutube } from 'react-icons/io5';
 import { FaXTwitter } from 'react-icons/fa6';
 import { FaLinkedin } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
 	return (
 		<footer className='bg-[#0f3557] text-white py-14'>
-			{/* Main container */}
 			<div className='max-w-7xl mx-auto px-4'>
-				{/* Top section: multiple columns */}
 				<div className='grid grid-cols-1 md:grid-cols-6 gap-8'>
 					{/* social links  */}
 					<div>
@@ -20,46 +19,47 @@ const Footer = () => {
 							<IoLogoYoutube className='text-2xl' />
 						</div>
 					</div>
+
 					{/* Column 1 */}
 					<div>
-						<h3 className='font-semibold text-[14px] mb-4 text-gray-400'>
+						<h2 className='font-semibold text-[14px] mb-4 text-gray-400'>
 							About Us
-						</h3>
+						</h2>
 						<ul className='space-y-2'>
 							<li>
-								<a
-									href='#'
+								<Link
+									to='/about-us/who-we-are'
 									className='hover:text-[#ff8200] transition-colors'>
 									Who We Are
-								</a>
+								</Link>
 							</li>
 							<li>
-								<a
-									href='#'
+								<Link
+									to='/about-us/global-presence'
 									className='hover:text-[#ff8200] transition-colors'>
 									Global Presence
-								</a>
+								</Link>
 							</li>
 							<li>
-								<a
-									href='#'
+								<Link
+									to='/about-us/leadership'
 									className='hover:text-[#ff8200] transition-colors'>
 									Leadership
-								</a>
+								</Link>
 							</li>
 							<li>
-								<a
-									href='#'
+								<Link
+									to='/careers/student-programs'
 									className='hover:text-[#ff8200] transition-colors'>
 									Careers
-								</a>
+								</Link>
 							</li>
 							<li>
-								<a
-									href='#'
+								<Link
+									to='/institutional-investors'
 									className='hover:text-[#ff8200] transition-colors'>
 									Investor Relations
-								</a>
+								</Link>
 							</li>
 						</ul>
 					</div>
@@ -71,39 +71,39 @@ const Footer = () => {
 						</h3>
 						<ul className='space-y-2'>
 							<li>
-								<a
-									href='#'
+								<Link
+									to='/responsibility'
 									className='hover:text-[#ff8200] transition-colors'>
 									Overview
-								</a>
+								</Link>
 							</li>
 							<li>
-								<a
-									href='#'
+								<Link
+									to='/responsibility/2023-sustainability-report'
 									className='hover:text-[#ff8200] transition-colors'>
 									Sustainability Report
-								</a>
+								</Link>
 							</li>
 							<li>
-								<a
-									href='#'
+								<Link
+									to='/responsibility/tamseys-net-zero-commitment'
 									className='hover:text-[#ff8200] transition-colors'>
 									Our Net-Zero Commitment
-								</a>
+								</Link>
 							</li>
 							<li>
-								<a
-									href='#'
+								<Link
+									to='/responsibility/our-workplace'
 									className='hover:text-[#ff8200] transition-colors'>
 									Our Workplace
-								</a>
+								</Link>
 							</li>
 							<li>
-								<a
-									href='#'
+								<Link
+									to='/responsibility'
 									className='hover:text-[#ff8200] transition-colors'>
 									Corporate Responsibility
-								</a>
+								</Link>
 							</li>
 						</ul>
 					</div>
@@ -116,40 +116,40 @@ const Footer = () => {
 						<ul className='space-y-2'>
 							<p>Tamsley Asset Management</p>
 							<li>
-								<a
-									href='#'
+								<Link
+									to='/our-businesses/renewable-power-transition'
 									className='hover:text-[#ff8200] transition-colors'>
 									Renewable Power & Transition
-								</a>
+								</Link>
 							</li>
 							<li>
-								<a
-									href='#'
+								<Link
+									to='/our-businesses/infrastructure'
 									className='hover:text-[#ff8200] transition-colors'>
 									Infrastructure
-								</a>
+								</Link>
 							</li>
 							<li>
-								<a
-									href='#'
+								<Link
+									to='#'
 									className='hover:text-[#ff8200] transition-colors'>
 									Private Equity
-								</a>
+								</Link>
 							</li>
 							<li>
-								<a
-									href='#'
+								<Link
+									to='#'
 									className='hover:text-[#ff8200] transition-colors'>
 									Credit
-								</a>
+								</Link>
 							</li>
 							<p>Tamsley Wealth solutions</p>
 							<li>
-								<a
-									href='#'
+								<Link
+									to='#'
 									className='hover:text-[#ff8200] transition-colors'>
 									Retirement Services
-								</a>
+								</Link>
 							</li>
 						</ul>
 					</div>
@@ -161,39 +161,39 @@ const Footer = () => {
 						</h3>
 						<ul className='space-y-2'>
 							<li>
-								<a
-									href='#'
+								<Link
+									to='/our-businesses/renewable-power-transition'
 									className='hover:text-[#ff8200] transition-colors'>
 									Renewable Power & Transition
-								</a>
+								</Link>
 							</li>
 							<li>
-								<a
-									href='#'
+								<Link
+									to='/our-businesses/infrastructure'
 									className='hover:text-[#ff8200] transition-colors'>
 									Infrastructure
-								</a>
+								</Link>
 							</li>
 							<li>
-								<a
-									href='#'
+								<Link
+									to='/our-businesses/private-equity'
 									className='hover:text-[#ff8200] transition-colors'>
 									Private Equity
-								</a>
+								</Link>
 							</li>
 							<li>
-								<a
-									href='#'
+								<Link
+									to='/our-businesses/real-estate'
 									className='hover:text-[#ff8200] transition-colors'>
 									Real Estate
-								</a>
+								</Link>
 							</li>
 							<li>
-								<a
-									href='#'
+								<Link
+									to='/our-businesses/credit'
 									className='hover:text-[#ff8200] transition-colors'>
 									Credit
-								</a>
+								</Link>
 							</li>
 						</ul>
 					</div>
@@ -205,94 +205,90 @@ const Footer = () => {
 						</h3>
 						<ul className='space-y-2'>
 							<li>
-								<a
-									href='#'
+								<Link
+									to='#'
 									className='hover:text-[#ff8200] transition-colors'>
 									Projects
-								</a>
+								</Link>
 							</li>
 							<li>
-								<a
-									href='#'
+								<Link
+									to='#'
 									className='hover:text-[#ff8200] transition-colors'>
 									Newsroom
-								</a>
+								</Link>
 							</li>
 							<li>
-								<a
-									href='#'
+								<Link
+									to='/news-insights/insights'
 									className='hover:text-[#ff8200] transition-colors'>
 									Publications
-								</a>
+								</Link>
 							</li>
 							<li>
-								<a
-									href='#'
+								<Link
+									to='#'
 									className='hover:text-[#ff8200] transition-colors'>
 									Investor FAQs
-								</a>
+								</Link>
 							</li>
 						</ul>
 					</div>
 				</div>
 
-				{/* Bottom section: legal links, disclaimers, etc. */}
+				{/* Bottom section */}
 				<div className='border-t border-gray-600 mt-8 pt-4 '>
 					<ul className='flex flex-wrap gap-4 text-sm'>
 						<li>
-							<a
-								href='#'
+							<Link
+								to='#'
 								className='hover:text-[#ff8200] transition-colors'>
 								Sitemap
-							</a>
+							</Link>
 						</li>
 						<li>
-							<a
-								href='#'
+							<Link
+								to='#'
 								className='hover:text-[#ff8200] transition-colors'>
 								Terms of Use
-							</a>
+							</Link>
 						</li>
 						<li>
-							<a
-								href='#'
+							<Link
+								to='#'
 								className='hover:text-[#ff8200] transition-colors'>
 								Accessibility Notice
-							</a>
+							</Link>
 						</li>
 						<li>
-							<a
-								href='#'
+							<Link
+								to='#'
 								className='hover:text-[#ff8200] transition-colors'>
 								Cookie Policy
-							</a>
+							</Link>
 						</li>
-
 						<li>
-							<a
-								href='#'
+							<Link
+								to='#'
 								className='hover:text-[#ff8200] transition-colors'>
 								Data Protection & Privacy Notice
-							</a>
+							</Link>
 						</li>
 						<li>
-							<a
-								href='#'
+							<Link
+								to='#'
 								className='hover:text-[#ff8200] transition-colors'>
 								Web Fraud and Phishing Notice
-							</a>
+							</Link>
 						</li>
 						<li>
-							<a
-								href='#'
+							<Link
+								to='#'
 								className='hover:text-[#ff8200] transition-colors'>
 								Complaint Policy - Australia
-							</a>
+							</Link>
 						</li>
-						{/* Add or remove any other links you need */}
 					</ul>
-
-					{/* Optional copyright or trademark */}
 					<p className='text-sm mt-4'>
 						&copy; {new Date().getFullYear()} Brookfield. All rights reserved.
 					</p>

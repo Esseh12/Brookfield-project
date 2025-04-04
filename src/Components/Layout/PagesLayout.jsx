@@ -71,7 +71,6 @@ const PagesLayout = ({
 		{
 			label: 'Businesses',
 			href: '#',
-
 			leftItems: [
 				{
 					label: 'Tamsey Wealth Solutions',
@@ -110,7 +109,6 @@ const PagesLayout = ({
 					label: 'Tamsey Asset Management',
 					href: '/businesses/asset-management',
 					toggleable: true,
-					// When this left item is active, show only one link on the right
 					rightContent: (
 						<div className='flex flex-col'>
 							<Link
@@ -122,15 +120,6 @@ const PagesLayout = ({
 					),
 				},
 			],
-			// A default rightContent can be provided if needed
-			rightContent: (
-				<FeatureContent
-					title='Our Business Divisions'
-					description='Discover our comprehensive suite of financial services and solutions.'
-					linkText='Explore All Services'
-					linkUrl='/businesses/all'
-				/>
-			),
 		},
 		{
 			label: 'Careers',

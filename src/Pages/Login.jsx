@@ -50,7 +50,7 @@ const Login = () => {
 			<header className='relative z-10 p-4 sm:p-6'>
 				<Link
 					to='/'
-					className='text-white text-2xl sm:text-3xl md:text-4xl font-bold'>
+					className='text-white text-2xl sm:text-3xl font-bold'>
 					Tamsey Finance Inc
 				</Link>
 			</header>

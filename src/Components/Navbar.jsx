@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Typography } from '@mui/material';
 import { MdSearch, MdMenu, MdClose } from 'react-icons/md';
 import NavDropdown, { FeatureContent } from './NavbarDropdown';
+import { IoIosArrowDown } from 'react-icons/io';
 
 const Navbar = ({ navItems = [], logo, logoText }) => {
 	const [scrolled, setScrolled] = useState(false);
@@ -103,7 +104,7 @@ const Navbar = ({ navItems = [], logo, logoText }) => {
 
 	return (
 		<header
-			className={`fixed w-full z-50 transition-all duration-300 ${
+			className={`fixed w-full z-50 transition-all duration-300  ${
 				scrolled
 					? 'bg-white text-[#0f3557] shadow-md'
 					: 'bg-transparent text-white'
@@ -142,7 +143,7 @@ const Navbar = ({ navItems = [], logo, logoText }) => {
 										title={item.label}
 										leftItems={item.leftItems}
 										rightContent={item.rightContent}
-										className={`${textColorClass} hover:opacity-80`}
+										className={`${textColorClass} hover:opacity-80 hover:underline transition-all`}
 										dropdownClassName='mt-2'
 										leftItemClassName='text-gray-700 hover:text-blue-600'
 										isOpen={hoveredItem === index}
@@ -166,26 +167,29 @@ const Navbar = ({ navItems = [], logo, logoText }) => {
 					{/* Right side: Language + Search (desktop only) */}
 					<div className='hidden md:flex items-center space-x-4'>
 						{/* Language label */}
-						<span className={`text-sm ${textColorClass}`}>Language</span>
+						<span className={`flex gap-2 items-center ${textColorClass}`}>
+							<p>Language</p>
+							<IoIosArrowDown />
+						</span>
 
 						{/* Search Icon / Search Bar */}
 						<div className='relative transition-all duration-300'>
 							{searchOpen ? (
-								<div className='flex items-center border border-black rounded-md bg-white px-2 py-1'>
+								<div className='flex items-center border border-[#dddddd] bg-white px-2 py-1'>
 									<MdSearch
-										className='text-orange-500 border border-black rounded p-1 mr-2'
-										size={20}
+										className='text-[#ff8200] p-1 mr-2'
+										size={36}
 									/>
 									<input
 										ref={searchInputRef}
 										type='text'
 										placeholder='Search'
-										className='placeholder-gray-400 text-[#0f3557] text-sm outline-none w-32 sm:w-48'
+										className='placeholder-[#4d4d4d] text-[#0f3557] text-sm outline-none w-32 sm:w-48 p-2'
 									/>
 									<button
 										onClick={() => setSearchOpen(false)}
 										className='ml-2 focus:outline-none'>
-										<MdClose className='h-4 w-4 text-orange-500' />
+										<MdClose className='h-6 w-6 text-[#ff8200]' />
 									</button>
 								</div>
 							) : (
@@ -222,8 +226,8 @@ const Navbar = ({ navItems = [], logo, logoText }) => {
 				<div className='flex items-center justify-between p-4 border-b'>
 					<Typography
 						variant='h6'
-						className='font-bold text-[#0f3557]'>
-						Menu
+						className='font-bold text-[#0f3557] text-sm sm:text-base'>
+						Tamsey Finance Inc
 					</Typography>
 					<button
 						className='focus:outline-none'
@@ -236,23 +240,23 @@ const Navbar = ({ navItems = [], logo, logoText }) => {
 				</div>
 
 				{/* Search Bar (mobile) */}
-				<div className='p-4 border-b'>
+				<div className='p-4 border-b bg-[#f2f2f2]'>
 					{searchOpen ? (
-						<div className='flex items-center border border-black rounded-md bg-white px-2 py-1'>
+						<div className='flex items-center border border-[#e5e5e5] bg-white px-4 py-4'>
 							<MdSearch
-								className='text-orange-500 border border-black rounded p-1 mr-2'
-								size={20}
+								className='text-[#ff8200] p-1 mr-2'
+								size={34}
 							/>
 							<input
 								ref={searchInputRef}
 								type='text'
 								placeholder='Search'
-								className='placeholder-gray-400 text-[#0f3557] text-sm outline-none w-full'
+								className='placeholder-[#4d4d4d] text-[#0f3557] text-sm outline-none w-full'
 							/>
 							<button
 								onClick={() => setSearchOpen(false)}
 								className='ml-2 focus:outline-none'>
-								<MdClose className='h-4 w-4 text-orange-500' />
+								<MdClose className='h-6 w-6 text-orange-500' />
 							</button>
 						</div>
 					) : (
@@ -290,7 +294,6 @@ const Navbar = ({ navItems = [], logo, logoText }) => {
 							)}
 						</div>
 					))}
-
 					{/* Language Option */}
 					<div className='mt-4'>
 						<button className='w-full text-left text-[#0f3557] hover:bg-gray-100 px-2 py-2 rounded'>
@@ -303,7 +306,12 @@ const Navbar = ({ navItems = [], logo, logoText }) => {
 	);
 };
 
-// Mobile Accordion for dropdown items
+export default Navbar;
+
+/* 
+	MobileAccordion renders a nav item with nested left items. For any left item marked as toggleable 
+	(with a `toggleable` property and nested `rightContent`), it uses MobileNestedAccordion to show the nested list.
+*/
 function MobileAccordion({ title, items, rightContent, onClose }) {
 	const [isOpen, setIsOpen] = useState(false);
 
@@ -315,7 +323,7 @@ function MobileAccordion({ title, items, rightContent, onClose }) {
 				<span>{title}</span>
 				<svg
 					className={`h-4 w-4 transition-transform duration-200 ${
-						isOpen ? 'transform rotate-180' : ''
+						isOpen ? 'rotate-180' : ''
 					}`}
 					xmlns='http://www.w3.org/2000/svg'
 					viewBox='0 0 20 20'
@@ -330,35 +338,70 @@ function MobileAccordion({ title, items, rightContent, onClose }) {
 
 			{isOpen && (
 				<div className='ml-4 mt-1 border-l-2 border-gray-200 pl-2'>
-					{/* Main items */}
-					{items.map((item, idx) => (
-						<Link
-							key={idx}
-							to={item.href}
-							className='block text-[#0f3557] hover:bg-gray-100 px-2 py-2 rounded text-sm transition-colors'
-							onClick={() => {
-								if (item.onClick) {
-									item.onClick();
-								}
-								onClose();
-							}}>
-							{item.label}
-						</Link>
-					))}
-
-					{/* Optional: Display a simplified version of the right content on mobile */}
-					{rightContent && (
-						<div className='mt-3 p-2 bg-gray-50 rounded-md'>
-							{React.isValidElement(rightContent) &&
-								React.cloneElement(rightContent, {
-									className: 'text-sm',
-								})}
-						</div>
-					)}
+					{/* Iterate through left items */}
+					{items.map((item, idx) => {
+						// If the item is toggleable and has nested rightContent, use MobileNestedAccordion
+						if (item.toggleable && item.rightContent) {
+							return (
+								<MobileNestedAccordion
+									key={idx}
+									item={item}
+									onClose={onClose}
+								/>
+							);
+						} else {
+							return (
+								<Link
+									key={idx}
+									to={item.href}
+									className='block text-[#0f3557] hover:bg-gray-100 px-2 py-2 rounded text-sm transition-colors'
+									onClick={() => {
+										if (item.onClick) {
+											item.onClick();
+										}
+										onClose();
+									}}>
+									{item.label}
+								</Link>
+							);
+						}
+					})}
+					{/* Optionally display default right content under the list */}
+					{/* {rightContent && (
+						<div className='mt-3 p-2 bg-gray-50 rounded-md'>{rightContent}</div>
+					)} */}
 				</div>
 			)}
 		</div>
 	);
 }
 
-export default Navbar;
+/* 
+	MobileNestedAccordion renders a toggleable left item that reveals its nested (right) list.
+*/
+function MobileNestedAccordion({ item }) {
+	const [isOpen, setIsOpen] = useState(false);
+	return (
+		<div className='ml-4'>
+			<button
+				className='flex justify-between items-center w-full text-[#0f3557] hover:bg-gray-100 px-2 py-2 rounded transition-colors'
+				onClick={() => setIsOpen(!isOpen)}>
+				<span>{item.label}</span>
+				<svg
+					className={`h-4 w-4 transition-transform duration-200 ${
+						isOpen ? 'rotate-180' : ''
+					}`}
+					xmlns='http://www.w3.org/2000/svg'
+					viewBox='0 0 20 20'
+					fill='currentColor'>
+					<path
+						fillRule='evenodd'
+						d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z'
+						clipRule='evenodd'
+					/>
+				</svg>
+			</button>
+			{isOpen && <div className='ml-4 mt-1'>{item.rightContent}</div>}
+		</div>
+	);
+}

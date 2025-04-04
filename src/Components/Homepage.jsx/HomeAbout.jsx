@@ -116,11 +116,26 @@ const HomeAbout = () => {
 									</div>
 
 									{/* Reusable link items */}
-									<InfoLinkItem label='Renewable Power and Transition' />
-									<InfoLinkItem label='Infrastructure' />
-									<InfoLinkItem label='Private Equity' />
-									<InfoLinkItem label='Real Estate' />
-									<InfoLinkItem label='Credit' />
+									<InfoLinkItem
+										label='Renewable Power and Transition'
+										url='/our-businesses/renewable-power-transition'
+									/>
+									<InfoLinkItem
+										label='Infrastructure'
+										url='/our-businesses/infrastructure'
+									/>
+									<InfoLinkItem
+										label='Private Equity'
+										url='/our-businesses/private-equity'
+									/>
+									<InfoLinkItem
+										label='Real Estate'
+										url='/our-businesses/real-estate'
+									/>
+									<InfoLinkItem
+										label='Credit'
+										url='/our-businesses/credit'
+									/>
 								</div>
 							</div>
 						) : (
@@ -144,7 +159,10 @@ const HomeAbout = () => {
 									</div>
 
 									{/* Reusable link item */}
-									<InfoLinkItem label='Retirement Services' />
+									<InfoLinkItem
+										label='Retirement Services'
+										url='/our-businesses/retirement-services'
+									/>
 								</div>
 							</div>
 						)}
