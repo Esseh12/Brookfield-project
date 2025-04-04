@@ -47,31 +47,33 @@ const Login = () => {
 			/>
 
 			{/* Header */}
-			<header className='relative z-10 p-6'>
+			<header className='relative z-10 p-4 sm:p-6'>
 				<Link
 					to='/'
-					className='text-white text-2xl font-bold'>
+					className='text-white text-2xl sm:text-3xl md:text-4xl font-bold'>
 					Tamsey Finance Inc
 				</Link>
 			</header>
 
 			{/* Main Content */}
-			<main className='relative z-10 flex-grow flex items-center justify-center h-screen'>
-				<div className='w-full max-w-xl px-6'>
+			<main className='relative z-10 flex-grow flex items-center justify-center px-4'>
+				<div className='w-full max-w-xl'>
 					{/* Login Box */}
-					<div className='bg-black/20 backdrop-blur-sm rounded pb-8'>
+					<div className='bg-black/20 backdrop-blur-sm rounded-lg p-6 sm:p-8'>
 						{/* Title */}
-						<div className='bg-gray-600/70 rounded py-2 mb-8'>
-							<h2 className='text-white text-center text-xl'>Client Login</h2>
+						<div className='bg-gray-600/70 rounded py-2 mb-6'>
+							<h2 className='text-white text-center text-xl sm:text-2xl md:text-3xl'>
+								Client Login
+							</h2>
 						</div>
 
 						{/* Login Form */}
-						<form className='px-8'>
+						<form className='space-y-4'>
 							{/* Email Field */}
-							<div className='mb-4'>
+							<div>
 								<label
 									htmlFor='email'
-									className='block text-white mb-1'>
+									className='block text-white text-sm sm:text-base mb-1'>
 									Email
 								</label>
 								<input
@@ -79,15 +81,15 @@ const Login = () => {
 									id='email'
 									value={email}
 									onChange={(e) => setEmail(e.target.value)}
-									className='w-full p-2 rounded border border-gray-300'
+									className='w-full p-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500'
 								/>
 							</div>
 
 							{/* Password Field */}
-							<div className='mb-6'>
+							<div>
 								<label
 									htmlFor='password'
-									className='block text-white mb-1'>
+									className='block text-white text-sm sm:text-base mb-1'>
 									Password
 								</label>
 								<input
@@ -95,62 +97,63 @@ const Login = () => {
 									id='password'
 									value={password}
 									onChange={(e) => setPassword(e.target.value)}
-									className='w-full p-2 rounded border border-gray-300'
+									className='w-full p-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500'
 								/>
 							</div>
 
 							{/* First-time login note */}
-							<div className='text-white text-center text-sm my-6'>
+							<div className='text-white text-center text-xs sm:text-sm my-4'>
 								If this is your first time logging into Digital Data Exchange,
 								please leave the password blank and an email will be sent to you
 								with instructions.
 							</div>
 
 							{/* Submit Button */}
-							<div className='flex justify-center mt-6'>
+							<div className='flex justify-center'>
 								<button
 									type='submit'
-									className='bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-8 rounded-full'>
+									className='bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-8 rounded-full transition-colors duration-200'>
 									Submit
 								</button>
 							</div>
 						</form>
 
 						{/* Links */}
-						<div className='mt-8 pt-4 border-t border-white/20 flex justify-center flex-wrap gap-2'>
+						<div className='mt-6 pt-4 border-t border-white/20 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-xs sm:text-sm'>
 							<a
 								href='#'
-								className='text-white text-sm'>
+								className='text-white'>
 								Activate Your Account
 							</a>
-							<span className='text-white'>|</span>
+							<span className='text-white hidden sm:block'>|</span>
 							<a
 								href='#'
-								className='text-white text-sm'>
+								className='text-white'>
 								Client Login
 							</a>
-							<span className='text-white'>|</span>
+							<span className='text-white hidden sm:block'>|</span>
 							<a
 								href='#'
-								className='text-white text-sm'>
+								className='text-white'>
 								Technical Support
 							</a>
-							<div className='w-full flex justify-center gap-4 mt-2'>
+							{/* Additional links for small screens */}
+							<div className='flex flex-col sm:flex-row items-center gap-2'>
 								<a
 									href='#'
-									className='text-white text-sm'>
+									className='text-white'>
 									Forgot Your Password?
 								</a>
-								<span className='text-white'>|</span>
+								<span className='text-white hidden sm:block'>|</span>
 								<a
 									href='#'
-									className='text-white text-sm'>
+									className='text-white'>
 									Forgot Your Email?
 								</a>
-								<span className='text-white'>|</span>
+								<span className='text-white hidden sm:block'>|</span>
 								<a
 									href='#'
-									className='text-white text-sm'>
+									className='text-white'>
 									Unlock Account
 								</a>
 							</div>
@@ -160,9 +163,9 @@ const Login = () => {
 			</main>
 
 			{/* Footer */}
-			<footer className='relative z-10 bg-blue-900/90 text-white py-4 px-6 mt-auto flex justify-between items-center'>
-				<div className='text-sm'>© 2025 FIS All Rights Reserved</div>
-				<div className='flex gap-6 text-sm'>
+			<footer className='relative z-10 bg-blue-900/90 text-white py-4 px-4 sm:px-6 flex flex-col sm:flex-row justify-between items-center'>
+				<div className='text-xs sm:text-sm'>© 2025 FIS All Rights Reserved</div>
+				<div className='flex gap-4 mt-2 sm:mt-0 text-xs sm:text-sm'>
 					<a
 						href='#'
 						className='text-white'>
