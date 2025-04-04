@@ -163,9 +163,9 @@ const Login = () => {
 			</main>
 
 			{/* Footer */}
-			<footer className='relative z-10 bg-blue-900/90 text-white py-4 px-4 sm:px-6 flex flex-col sm:flex-row justify-between items-center'>
+			<footer className='relative z-10 bg-blue-900/90 text-white py-4 px-4 sm:px-6 flex flex-col md:flex-row justify-between items-center'>
 				<div className='text-xs sm:text-sm'>© 2025 FIS All Rights Reserved</div>
-				<div className='flex gap-4 mt-2 sm:mt-0 text-xs sm:text-sm'>
+				<div className='flex flex-col sm:flex-row gap-4 mt-2 sm:mt-0 text-xs sm:text-sm items-center'>
 					<a
 						href='#'
 						className='text-white'>
