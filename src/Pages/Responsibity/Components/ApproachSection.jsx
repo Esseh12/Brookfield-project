@@ -80,6 +80,7 @@ const ApproachSection = () => {
 	return (
 		<section
 			ref={ref}
+			id='approach'
 			className='relative min-h-screen bg-[#0f3557] overflow-hidden'>
 			{/* Diamond Overlay */}
 			<motion.div

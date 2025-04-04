@@ -6,6 +6,8 @@ import SidebarMenu from './Components/SidebarMenu';
 import EmissionsSection from './Components/EmissionSection';
 import CaseStudies from './Components/CaseStudies';
 import ApproachSection from './Components/ApproachSection';
+import ClosingSection from './Components/ClosingSection';
+
 const SustainabilityReport = () => {
 	// Define navItems for Navbar
 	const navItems = [
@@ -141,6 +143,7 @@ const SustainabilityReport = () => {
 					<EmissionsSection />
 					<CaseStudies />
 					<ApproachSection />
+					<ClosingSection />
 				</div>
 
 				<Footer />

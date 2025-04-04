@@ -4,7 +4,7 @@ import { FaLinkedin } from 'react-icons/fa';
 
 const Footer = () => {
 	return (
-		<footer className='bg-[#0f3557] text-white py-10'>
+		<footer className='bg-[#0f3557] text-white py-14'>
 			{/* Main container */}
 			<div className='max-w-7xl mx-auto px-4'>
 				{/* Top section: multiple columns */}

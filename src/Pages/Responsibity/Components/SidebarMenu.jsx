@@ -1,23 +1,21 @@
 import React, { useState, useEffect } from 'react';
 
-const SidebarMenu = () => {
+const SidebarMenu = ({ backgroundColor = 'blue' }) => {
 	const [activeSection, setActiveSection] = useState('introduction');
 
 	const sections = [
 		{ id: 'introduction', label: 'Introduction' },
 		{ id: 'emissions', label: 'Emissions' },
 		{ id: 'case-studies', label: 'Case Studies' },
-		{ id: 'operational-change', label: 'Operational Change' },
+		{ id: 'approach', label: 'Operational Change' },
 		{ id: 'decarbonization', label: 'Decarbonization Investments' },
-		{ id: 'report', label: '2023 Report' },
+		{ id: 'closing', label: '2023 Report' },
 	];
 
-	// Handle scrolling and update active section
 	useEffect(() => {
 		const handleScroll = () => {
 			const scrollPosition = window.scrollY;
 
-			// Find the current section based on scroll position
 			const currentSection = sections.find((section, index) => {
 				const element = document.getElementById(section.id);
 				if (!element) return false;
@@ -39,28 +37,38 @@ const SidebarMenu = () => {
 		};
 
 		window.addEventListener('scroll', handleScroll);
-		handleScroll(); // Initialize on mount
+		handleScroll();
 
 		return () => {
 			window.removeEventListener('scroll', handleScroll);
 		};
-	}, [sections]);
+	}, []);
 
 	const scrollToSection = (id) => {
 		const element = document.getElementById(id);
 		if (element) {
 			window.scrollTo({
-				top: element.offsetTop - 80, // Offset for header if needed
+				top: element.offsetTop - 80,
 				behavior: 'smooth',
 			});
 			setActiveSection(id);
 		}
 	};
 
+	// Determine text color based on background
+	const baseTextColor =
+		backgroundColor === 'white' ? 'text-blue-600' : 'text-white';
+	const inactiveTextColor =
+		backgroundColor === 'white' ? 'text-blue-400' : 'text-gray-300';
+	const hoverTextColor =
+		backgroundColor === 'white' ? 'hover:text-blue-800' : 'hover:text-white';
+	const dotColorActive =
+		backgroundColor === 'white' ? 'bg-blue-600' : 'bg-white';
+
 	return (
-		<nav className='hidden fixed left-14 top-0 h-full lg:flex items-center z-50'>
+		<nav className='hidden fixed left-18 top-28 lg:flex items-start z-50 max-h-[80vh] overflow-auto'>
 			<div className='h-full flex flex-col justify-center'>
-				<ul className='flex flex-col bg-transparent text-white items-start'>
+				<ul className='flex flex-col bg-transparent items-start'>
 					{sections.map((section) => (
 						<li
 							key={section.id}
@@ -68,16 +76,16 @@ const SidebarMenu = () => {
 							<div
 								className={`w-[4px] h-[4px] rounded-full mr-4 transition-all duration-300 ${
 									activeSection === section.id
-										? 'bg-white scale-125'
+										? `${dotColorActive} scale-125`
 										: 'bg-gray-500'
 								}`}
 							/>
 							<button
 								onClick={() => scrollToSection(section.id)}
-								className={`text-sm hover:text-white transition-colors duration-300 ${
+								className={`text-sm transition-colors duration-300 ${
 									activeSection === section.id
-										? 'text-white font-medium'
-										: 'text-gray-300'
+										? `${baseTextColor} font-medium`
+										: `${inactiveTextColor} ${hoverTextColor}`
 								}`}>
 								{section.label}
 							</button>
