@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const NavDropdown = ({
@@ -16,9 +16,10 @@ const NavDropdown = ({
 }) => {
 	// Use internal state if not controlled externally
 	const [internalIsOpen, setInternalIsOpen] = useState(false);
+	// Add state to track which left item is active
+	const [activeLeftItem, setActiveLeftItem] = useState(0);
 	const dropdownRef = useRef(null);
 	const timeoutRef = useRef(null);
-	const navigate = useNavigate();
 
 	// Determine if component is controlled or uncontrolled
 	const isControlled =
@@ -42,20 +43,6 @@ const NavDropdown = ({
 		}, 150);
 	};
 
-	// Close dropdown when clicking outside
-	useEffect(() => {
-		const handleClickOutside = (event) => {
-			if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-				setIsOpen(false);
-			}
-		};
-
-		document.addEventListener('mousedown', handleClickOutside);
-		return () => {
-			document.removeEventListener('mousedown', handleClickOutside);
-		};
-	}, [setIsOpen]);
-
 	// Clean up timeout on unmount
 	useEffect(() => {
 		return () => {
@@ -65,23 +52,39 @@ const NavDropdown = ({
 		};
 	}, []);
 
-	// Handle navigation
-	const handleNavigation = (item, e) => {
-		if (item.onClick) {
+	// Handle navigation and toggle functionality
+	const handleNavigation = (item, index, e) => {
+		// Toggle functionality - set active item
+		if (item.toggleable) {
+			e.preventDefault();
+			setActiveLeftItem(index);
+
+			// If there's an onClick handler, call it
+			if (item.onClick) {
+				item.onClick();
+			}
+		}
+		// Regular navigation behavior
+		else if (item.onClick) {
 			e.preventDefault();
 			item.onClick();
-		} else if (item.href) {
-			// For normal links, navigate programmatically
-			e.preventDefault();
 			setIsOpen(false);
-			// Use setTimeout to ensure state change happens before navigation
+		} else if (item.href) {
+			// Allow Link navigation to occur before closing dropdown
 			setTimeout(() => {
-				navigate(item.href);
-			}, 10);
+				setIsOpen(false);
+			}, 0); // 0ms delay ensures it's queued after current execution
 		}
+	};
 
-		// Close the dropdown regardless
-		setIsOpen(false);
+	// Determine which right content to show
+	const getCurrentRightContent = () => {
+		// If the active item has specific content, show that
+		if (leftItems[activeLeftItem] && leftItems[activeLeftItem].rightContent) {
+			return leftItems[activeLeftItem].rightContent;
+		}
+		// Otherwise fall back to the default right content
+		return rightContent;
 	};
 
 	return (
@@ -101,11 +104,11 @@ const NavDropdown = ({
 			{/* Brookfield-style dropdown menu */}
 			{isOpen && (
 				<div
-					className={`absolute left-0 mt-0 shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50 ${dropdownClassName}`}
+					className={`absolute left-0 mt-0 shadow-lg bg-white  z-50 ${dropdownClassName}`}
 					style={{ minWidth: '520px' }}>
 					{/* Triangle pointer */}
 					<div
-						className={`absolute -top-2 left-10 w-4 h-4 bg-white transform rotate-45 ${triangleClassName}`}
+						className={`absolute -top-2 left-10 w-6 h-6 bg-white transform rotate-45 ${triangleClassName}`}
 					/>
 
 					<div className='flex rounded-md bg-white relative z-10'>
@@ -115,18 +118,22 @@ const NavDropdown = ({
 								<Link
 									key={index}
 									to={item.href || '#'}
-									className={`block px-8 py-3 text-sm text-gray-700 hover:text-blue-600 ${leftItemClassName}`}
-									onClick={(e) => handleNavigation(item, e)}>
+									className={`block px-8 py-3 text-sm ${
+										item.toggleable && index === activeLeftItem
+											? 'text-blue-600 font-semibold'
+											: 'text-gray-700 hover:text-blue-600'
+									} ${leftItemClassName}`}
+									onClick={(e) => handleNavigation(item, index, e)}>
 									{item.label}
 								</Link>
 							))}
 						</div>
 
 						{/* Right column - Feature content */}
-						{rightContent && (
+						{getCurrentRightContent() && (
 							<div
 								className={`py-6 px-8 flex-1 bg-gray-50 ${rightContentClassName}`}>
-								{rightContent}
+								{getCurrentRightContent()}
 							</div>
 						)}
 					</div>
@@ -144,13 +151,6 @@ export const FeatureContent = ({
 	linkText,
 	linkUrl,
 }) => {
-	const navigate = useNavigate();
-
-	const handleLinkClick = (e) => {
-		e.preventDefault();
-		navigate(linkUrl);
-	};
-
 	return (
 		<div className='flex flex-col h-full'>
 			{image && (
@@ -159,7 +159,7 @@ export const FeatureContent = ({
 						<img
 							src={image}
 							alt={title}
-							className='max-w-full h-auto'
+							className='max-w-[75%] h-auto'
 						/>
 					) : (
 						image
@@ -180,8 +180,7 @@ export const FeatureContent = ({
 			{linkText && linkUrl && (
 				<Link
 					to={linkUrl}
-					className='text-blue-600 hover:text-blue-800 text-sm mt-auto flex items-center font-medium'
-					onClick={handleLinkClick}>
+					className='text-blue-600 hover:text-blue-800 text-sm mt-auto flex items-center font-medium'>
 					{linkText}
 					<svg
 						className='ml-2 h-4 w-4'
@@ -207,6 +206,8 @@ NavDropdown.propTypes = {
 			label: PropTypes.string.isRequired,
 			href: PropTypes.string,
 			onClick: PropTypes.func,
+			toggleable: PropTypes.bool, // Add this to mark an item as toggleable
+			rightContent: PropTypes.node, // Add this to provide specific content for this item
 		})
 	),
 	rightContent: PropTypes.node,

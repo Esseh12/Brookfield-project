@@ -21,6 +21,7 @@ import PrivateEquity from './Pages/Businesses/PrivateEquity';
 import RealEstate from './Pages/Businesses/RealEstate';
 import Credit from './Pages/Businesses/Credit';
 import SustainabilityReport from './Pages/Responsibity/SustainabilityReport';
+import Login from './Pages/Login';
 
 function App() {
 	return (
@@ -113,6 +114,10 @@ function App() {
 				<Route
 					path='/responsibility/2023-sustainability-report'
 					element={<SustainabilityReport />}
+				/>
+				<Route
+					path='/login'
+					element={<Login />}
 				/>
 				<Route
 					path='*'

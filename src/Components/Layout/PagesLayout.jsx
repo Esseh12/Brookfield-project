@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import { FeatureContent } from '../NavbarDropdown';
@@ -30,8 +31,8 @@ const PagesLayout = ({
 					image='/Assets/Images/brookfield-logo-nav-icon.avif'
 					title='About Tamsey Finance Inc'
 					description='Learn about our heritage, values, and global impact in the financial industry.'
-					linkText='Our History'
-					linkUrl='/about-us/history'
+					linkText='Learn More'
+					linkUrl='#'
 				/>
 			),
 		},
@@ -63,18 +64,65 @@ const PagesLayout = ({
 					title='2023 Sustainability Report'
 					description='Learn about our heritage, values, and global impact in the financial industry.'
 					linkText='View Now'
-					linkUrl='/about-us/history'
+					linkUrl='/responsibility/2023-sustainability-report'
 				/>
 			),
 		},
 		{
 			label: 'Businesses',
-			href: '/businesses',
-			dropdownItems: [
-				{ label: 'Investment Banking', href: '/businesses/investment-banking' },
-				{ label: 'Asset Management', href: '/businesses/asset-management' },
-				{ label: 'Wealth Management', href: '/businesses/wealth-management' },
+			href: '#',
+
+			leftItems: [
+				{
+					label: 'Tamsey Wealth Solutions',
+					toggleable: true,
+					rightContent: (
+						<div className='flex flex-col space-y-2'>
+							<Link
+								className=' text-sm text-[#0f3557] hover:text-[#ff8200] font-semibold leading-[21px]'
+								to='/our-businesses/renewable-power-transition'>
+								Renewable Power And Transition
+							</Link>
+							<Link
+								className='text-sm text-[#0f3557] hover:text-[#ff8200] font-semibold leading-[21px]'
+								to='/our-businesses/infrastructure'>
+								Infrastructure
+							</Link>
+							<Link
+								className='text-sm text-[#0f3557] hover:text-[#ff8200] font-semibold leading-[21px]'
+								to='/our-businesses/private-equity'>
+								Private Equity
+							</Link>
+							<Link
+								className='text-sm text-[#0f3557] hover:text-[#ff8200] font-semibold leading-[21px]'
+								to='/our-businesses/real-estate'>
+								Real Estate
+							</Link>
+							<Link
+								className='text-sm text-[#0f3557] hover:text-[#ff8200] font-semibold leading-[21px]'
+								to='/our-businesses/credit'>
+								Credit
+							</Link>
+						</div>
+					),
+				},
+				{
+					label: 'Tamsey Asset Management',
+					href: '/businesses/asset-management',
+					toggleable: true,
+					// When this left item is active, show only one link on the right
+					rightContent: (
+						<div className='flex flex-col'>
+							<Link
+								className='text-sm text-[#0f3557] hover:text-[#ff8200] font-semibold leading-[21px]'
+								to='/our-businesses/retirement-services'>
+								Retirement Services
+							</Link>
+						</div>
+					),
+				},
 			],
+			// A default rightContent can be provided if needed
 			rightContent: (
 				<FeatureContent
 					title='Our Business Divisions'
@@ -89,10 +137,7 @@ const PagesLayout = ({
 			href: '#',
 			dropdownItems: [
 				{ label: 'Student Programs', href: '/careers/student-programs' },
-				{
-					label: 'Open Oppurtunities',
-					href: '/careers/opportunities',
-				},
+				{ label: 'Open Opportunities', href: '/careers/opportunities' },
 				{
 					label: 'Our Net Zero Commitment',
 					href: '/responsibility/tamseys-net-zero-commitment',
@@ -121,20 +166,83 @@ const PagesLayout = ({
 		},
 		{
 			label: 'Investors',
-			href: '/investors',
-			dropdownItems: [
-				{ label: 'Financial Results', href: '/investors/financial-results' },
-				{ label: 'Annual Reports', href: '/investors/annual-reports' },
-				{ label: 'Investor Events', href: '/investors/events' },
+			href: '#',
+
+			leftItems: [
+				{
+					label: 'Institutional Investor',
+					toggleable: true,
+					rightContent: (
+						<div className='flex flex-col space-y-2'>
+							<Link
+								className=' text-sm text-[#0f3557] hover:text-[#ff8200] font-semibold leading-[21px]'
+								to='/institutional-investors'>
+								Private Market Solution
+							</Link>
+							<Link
+								className='text-sm text-[#0f3557] hover:text-[#ff8200] font-semibold leading-[21px]'
+								to='/institutional-investors/public-securities'>
+								Public Security Groups
+							</Link>
+						</div>
+					),
+				},
+				{
+					label: 'Financial Advisers',
+					href: '#',
+					toggleable: true,
+					// When this left item is active, show only one link on the right
+					rightContent: (
+						<div className='flex flex-col'>
+							<Link
+								className='text-sm text-[#0f3557] hover:text-[#ff8200] font-semibold leading-[21px]'
+								to='/our-businesses/retirement-services'>
+								Brookfield Wealth Solutions
+							</Link>
+						</div>
+					),
+				},
+				{
+					label: 'Shareholder Services',
+					href: '#',
+					toggleable: true,
+					// When this left item is active, show only one link on the right
+					rightContent: (
+						<div className='flex flex-col gap-4'>
+							<Link
+								className='text-sm text-[#0f3557] hover:text-[#ff8200] font-semibold leading-[21px]'
+								to='/our-businesses/retirement-services'>
+								Brookfield Corporation
+							</Link>
+							<Link
+								className='text-sm text-[#0f3557] hover:text-[#ff8200] font-semibold leading-[21px]'
+								to='/our-businesses/retirement-services'>
+								Brookfield Wealth Solutions
+							</Link>
+							<Link
+								className='text-sm text-[#0f3557] hover:text-[#ff8200] font-semibold leading-[21px]'
+								to='/our-businesses/retirement-services'>
+								Brookfield Infrastructure Partners
+							</Link>
+							<Link
+								className='text-sm text-[#0f3557] hover:text-[#ff8200] font-semibold leading-[21px]'
+								to='/our-businesses/retirement-services'>
+								Brookfield Renewable Partners
+							</Link>
+							<Link
+								className='text-sm text-[#0f3557] hover:text-[#ff8200] font-semibold leading-[21px]'
+								to='/our-businesses/retirement-services'>
+								Brookfield Business Partners
+							</Link>
+							<Link
+								className='text-sm text-[#0f3557] hover:text-[#ff8200] font-semibold leading-[21px]'
+								to='/our-businesses/retirement-services'>
+								Others
+							</Link>
+						</div>
+					),
+				},
 			],
-			rightContent: (
-				<FeatureContent
-					title='Investor Relations'
-					description='Access our financial information, earnings reports, and shareholder resources.'
-					linkText='Investor Resources'
-					linkUrl='/investors/resources'
-				/>
-			),
 		},
 		{ label: 'LP Login', href: '/login' },
 	];
