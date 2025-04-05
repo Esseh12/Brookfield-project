@@ -29,10 +29,10 @@ const QuickNav = () => {
 	return (
 		<>
 			<div className='bg-[#f8f8f8] sticky top-0 z-50 shadow-sm transition-all duration-300'>
-				<div className='container mx-auto px-4'>
+				<div className='container mx-auto px-2 sm:px-4'>
 					<div className='flex justify-between items-center'>
 						{/* Left navigation items */}
-						<div className='flex'>
+						<div className='flex space-x-4'>
 							{navItems.map((item) => {
 								const target = item.toLowerCase().replace(/ /g, '');
 								const isActive = active === item;
@@ -46,7 +46,7 @@ const QuickNav = () => {
 										}}
 										onMouseEnter={() => setHovered(item)}
 										onMouseLeave={() => setHovered(null)}
-										className='px-6 py-5 font-medium text-gray-700 relative'>
+										className='md:px-3 py-3 text-[12px] md:text-sm font-medium text-gray-700 relative'>
 										{item}
 										{(isActive || isHovered) && (
 											<div className='absolute bottom-0 left-0 w-full h-[2px] bg-[#0f3557]'></div>
@@ -57,14 +57,14 @@ const QuickNav = () => {
 						</div>
 
 						{/* Desktop Right navigation items */}
-						<div className='hidden sm:flex'>
+						<div className='hidden sm:flex space-x-4'>
 							{rightNavItems.map((item) => {
 								const Icon = item.icon;
 								const isHovered = hovered === item.name;
 								return (
 									<button
 										key={item.name}
-										className={`flex items-center px-8 py-5 transition-colors duration-300 ${
+										className={`flex items-center md:px-4 py-3 transition-colors duration-300 ${
 											isHovered
 												? 'bg-[#c6d8ef] text-[#0f3557]'
 												: 'bg-blue-50 text-gray-700'
@@ -76,7 +76,7 @@ const QuickNav = () => {
 												isHovered ? 'text-[#0f3557]' : ''
 											}`}
 										/>
-										<span className='font-medium'>{item.name}</span>
+										<span className='font-medium text-sm'>{item.name}</span>
 										{/* Uncomment to add arrow animation on Insights */}
 										{/* {item.name === 'Insights' && isHovered && (
                       <IoMdArrowForward className="ml-2 text-[#0f3557]" />
@@ -90,7 +90,7 @@ const QuickNav = () => {
 						<div className='sm:hidden'>
 							<button
 								onClick={toggleMobileMenu}
-								className='p-4 focus:outline-none transition-colors duration-300'>
+								className='p-3 focus:outline-none transition-colors duration-300'>
 								{mobileMenuOpen ? (
 									<IoMdClose size={24} />
 								) : (
@@ -110,13 +110,13 @@ const QuickNav = () => {
 								return (
 									<button
 										key={item.name}
-										className='flex items-center px-6 py-4 border-t border-gray-200 transition-colors duration-300 hover:bg-[#c6d8ef] hover:text-[#0f3557]'
+										className='flex items-center px-4 py-3 border-t border-gray-200 transition-colors duration-300 hover:bg-[#c6d8ef] hover:text-[#0f3557]'
 										onClick={() => {
 											// Optional: close the menu on selection
 											setMobileMenuOpen(false);
 										}}>
 										<Icon className='w-5 h-5 mr-2' />
-										<span className='font-medium'>{item.name}</span>
+										<span className='font-medium text-sm'>{item.name}</span>
 									</button>
 								);
 							})}
@@ -127,8 +127,8 @@ const QuickNav = () => {
 
 			{/* View All Insights section - visible only when Insights is hovered on desktop */}
 			{hovered === 'Insights' && (
-				<div className='hidden sm:block bg-[#c6d8ef] py-4 px-8 md:flex items-center ml-auto max-w-2xl transition-all duration-300'>
-					<div className='text-blue-600 font-medium flex items-center'>
+				<div className='hidden sm:block bg-[#c6d8ef] py-3 px-4 md:flex items-center ml-auto max-w-2xl transition-all duration-300'>
+					<div className='text-blue-600 font-medium flex items-center text-sm'>
 						View All Insights
 						<IoMdArrowForward className='ml-2' />
 					</div>
